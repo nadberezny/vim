@@ -39,6 +39,9 @@ Plugin 'rking/ag.vim'
 " Commenter
 Plugin 'scrooloose/nerdcommenter'
 
+" Moving lines
+Plugin 'matze/vim-move'
+
 " Snippets
 " Track the engine.
 Plugin 'SirVer/ultisnips'
@@ -91,6 +94,7 @@ let g:airline#extensions#tabline#enabled = 1
 nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
 " To have NERDTree always open on startup
 let g:nerdtree_tabs_open_on_console_startup = 0
+let g:nerdtree_tabs_open_on_gui_startup=0
 
 " ----- scrooloose/syntastic settings -----
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
