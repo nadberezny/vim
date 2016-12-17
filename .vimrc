@@ -14,7 +14,7 @@ set softtabstop=2      " default to 2 spaces for the soft tab
 set shiftwidth=2       " for when <TAB> is pressed at the beginning of a line
 set laststatus=2       " always show status bar
 "ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)
-set tags=./tags
+set tags=./tags,tags
 "set tags=./tags;,~/.vimtags
 "set tags+=gems.tags
 "set tags=./tags;c:/ruby/lib/tags
