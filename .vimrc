@@ -1,4 +1,5 @@
-filetype plugin indent on
+filetype off
+"filetype plugin indent on
 syntax on
 colorscheme Tomorrow-Night
 
@@ -50,29 +51,11 @@ let g:airline_detect_paste=1 " Show PASTE if in paste mode
 let g:airline#extensions#tabline#enabled = 1 " Show airline for tabs too
 
 " syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-
-"let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-"let g:syntastic_ruby_rubocop_exec = '/Users/j/.rvm/gems/ruby-2.3.1/bin/rubocop'
-"let g:syntastic_error_symbol = '✘'
-"let g:syntastic_warning_symbol = "▲"
-"let g:syntastic_javascript_checkers = 'eslint'
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"augroup mySyntastic
-  "au!
-  "au FileType tex let b:syntastic_mode = "passive"
-"augroup END
-
+let g:syntastic_elixir_checkers = ['elixir']
+let g:syntastic_enable_elixir_checker = 1
+let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+let g:syntastic_ruby_rubocop_exec = '/Users/j/.rvm/gems/ruby-2.3.1/bin/rubocop'
+let g:syntastic_javascript_checkers = ['eslint']
 
 " gitgutter
 " Required after having changed the colorscheme
@@ -127,8 +110,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
-" Working too slow
-"Plugin 'vim-syntastic/syntastic'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Valloric/YouCompleteMe'
@@ -140,4 +122,6 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'tpope/vim-surround'
 Plugin 'rking/ag.vim'
 Plugin 'matze/vim-move'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'mxw/vim-jsx'
 call vundle#end()
