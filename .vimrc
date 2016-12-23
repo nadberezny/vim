@@ -1,24 +1,31 @@
 filetype off
-"filetype plugin indent on
+filetype plugin indent on
 syntax on
 colorscheme Tomorrow-Night
 
+if exists('&breakindent')
+  set breakindent      " Indent wrapped lines up to the same level
+endif
+set expandtab          " Expand tabs into spaces
+set gfn=Meslo\ LG\ M\ DZ\ for\ Powerline:h12
+set hidden
 set history=1000
-set number
+set hlsearch
+set incsearch
+set laststatus=2       " always show status bar
 set modifiable
 set mouse=a
-set nowrap
-set hidden
-set expandtab          " Expand tabs into spaces
-set tabstop=2          " default to 2 spaces for a hard tab
-set softtabstop=2      " default to 2 spaces for the soft tab
+set nocompatible
+set number
 set shiftwidth=2       " for when <TAB> is pressed at the beginning of a line
-set laststatus=2       " always show status bar
-"ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)
+set showcmd            " display incomplete commands
+set scrolloff=3
+set softtabstop=2      " default to 2 spaces for the soft tab
+set splitright
 set tags=./tags,tags
-"set tags=./tags;,~/.vimtags
-"set tags+=gems.tags
-"set tags=./tags;c:/ruby/lib/tags
+set t_ut=
+set tabstop=2          " default to 2 spaces for a hard tab
+set pastetoggle=<F2>
 
 " MAPPINGS
 iabbrev @@ nadberezny@gmail.com
@@ -34,12 +41,20 @@ nnoremap <leader>; :bprevious<CR>
 nnoremap <leader>w :bp <BAR> bd #<CR>
 nnoremap <leader>l :ls<CR>
 vnoremap <C-S-c> "+y
-" Open/close NERDTree Tabs with \t
 nnoremap <silent> <leader>t :NERDTreeTabsToggle<CR>
+let g:UltiSnipsExpandTrigger = '<C-h>' " to jump: c-j
+let g:move_key_modifier = 'C' " vim move with c-j c-k
+" ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)
+nnoremap <leader>y :! ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths) [ENTER]
 
 " ctrlp
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_use_caching = 0
+let g:ctrlp_use_caching = 1
+let g:ctrlp_max_files = 0
+let g:ctrlp_cache_dir = $HOME . '/.vim/cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 " Speed up: gitgutter
 let g:gitgutter_realtime = 0
@@ -56,6 +71,13 @@ let g:syntastic_enable_elixir_checker = 1
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 let g:syntastic_ruby_rubocop_exec = '/Users/j/.rvm/gems/ruby-2.3.1/bin/rubocop'
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_error_symbol = '✘'
+let g:syntastic_warning_symbol = "▲"
+augroup mySyntastic
+  au!
+  au FileType tex let b:syntastic_mode = "passive"
+augroup END
+
 
 " gitgutter
 " Required after having changed the colorscheme
@@ -79,6 +101,9 @@ let g:airline#extensions#tabline#fnamemod = ':t'
      ""Unknown"   : "?"
      "}
 
+" Space for nerd commenter
+let NERDSpaceDelims=1
+
 " delimitMate
 let delimitMate_expand_cr = 1
 augroup mydelimitMate
@@ -92,16 +117,6 @@ augroup END
 " better-whitespace
 autocmd BufWritePre * StripWhitespace
 
-" vim-move
-let g:move_key_modifier = 'C'
-
-" easy tags
-let g:easytags_events = ['BufReadPost', 'BufWritePost']
-let g:easytags_async = 1
-let g:easytags_dynamic_files = 1
-let g:easytags_resolve_links = 1
-let g:easytags_suppress_ctags_warning = 1
-
 " PLUGINS
 set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
@@ -114,6 +129,8 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
